@@ -17,25 +17,25 @@ public class AdController {
     Ad ad3 = new Ad("Sunshine in a bottle", "Captured sunlight in a convenient recyclable bottle for all your natural lighting needs!");
     List<Ad> ads = new ArrayList<>(List.of(ad, ad2, ad3));
 
-    @GetMapping("")
+    @GetMapping(value = {"", "/"})
     public String adIndex(Model model){
         model.addAttribute("ads", ads);
         return "/ads/index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping({"/{id}", "/{id}/"})
     public String showAd(@PathVariable long id,
                          Model model) {
         model.addAttribute("ad", ad2);
         return "/ads/show";
     }
 
-    @GetMapping("/create")
+    @GetMapping({"/create", "/create/"})
     public String showCreate() {
         return "/ads/create";
     }
 
-    @PostMapping("/create")
+    @PostMapping({"/create", "/create/"})
     public String doCreate(@RequestParam(name="title") String title,
                            @RequestParam(name = "description") String description) {
         Ad ad = new Ad(title, description);
