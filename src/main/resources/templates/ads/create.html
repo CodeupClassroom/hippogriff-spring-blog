@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <th:block th:replace="~{partials/partials :: head (title='Submit an Ad')}"></th:block>
+</head>
+
+<body>
+
+<header th:include="~{partials/partials :: header}"></header>
+<h4>Create an ad</h4>
+
+<form action="/ads/create" method="post">
+  <label for="title">Title:</label>
+  <input type="text" name="title" id="title"><br>
+  <label for="description">Description:</label>
+  <textarea name="description" id="description"></textarea>
+  <button>Submit</button>
+</form>
+</body>
+</html>

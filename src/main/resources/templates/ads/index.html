@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <th:block th:replace="~{partials/partials :: head (title='All Ads')}"></th:block>
+  <link rel="stylesheet" href="/css/ad.css">
+</head>
+
+<body>
+
+<header th:include="~{partials/partials :: header}"></header>
+
+<div th:each="ad : ${ads}">
+  <h2 th:utext="${ad.title}"></h2>
+  <p th:text="${ad.description}"></p>
+</div>
+
+<script src="/js/ad.js"></script>
+</body>
+</html>
