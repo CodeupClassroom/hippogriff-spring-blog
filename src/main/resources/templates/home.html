@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Home</title>
+  <th:block th:replace="~{partials/partials :: head (title='Home')}"></th:block>
 </head>
+
 <body>
 
-<h1>This is the home page</h1>
+<nav th:replace="~{partials/partials :: navbar}">
+</nav>
+
+<div class="container-fluid">
+
+  <h2 class="home-heading text-center">Welcome to AdBlaster!!1!</h2>
+
+  <h5 class="text-center">Because people LOVE a crapton of ads.</h5>
+
+  <img class="ads-banner-image" src="/images/happy_people.jpg">
+
+<!--  <div class="container ">-->
+<!--    <div class="row">-->
+<!--      <div class="text-center col-12 col-sm-6 ads-banner-text-left ">-->
+<!--        People LOVE ads!-->
+<!--      </div>-->
+<!--      <div class="text-center col-12 col-sm-6 ads-banner-text-right">-->
+<!--        So we have a TON of them. :)-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>
+
+<footer th:insert="~{partials/partials :: footer}" class="ads-page-footer ads-color-french-violet"></footer>
 
 </body>
 </html>
