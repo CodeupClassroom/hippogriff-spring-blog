@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Getter
 @Setter
 @ToString
+
 @Entity
 @Table(name = "adlister_ads")
 public class Ad {

@@ -17,6 +17,10 @@ public class AdController {
 
     private AdDao adDao;
 
+//    public AdController(AdDao adDao){
+//        this.adDao = adDao;
+//    }
+
     @GetMapping(value = {"", "/"})
     public String adIndex(Model model){
         List<Ad> ads = adDao.findAll();
@@ -27,7 +31,13 @@ public class AdController {
     @GetMapping({"/{id}", "/{id}/"})
     public String showAd(@PathVariable long id,
                          Model model) {
-//        model.addAttribute("ad", ad2);
+        Ad ad;
+        if (adDao.findById(id).isPresent()){
+            ad = adDao.findById(id).get();
+        } else {
+            ad = new Ad("Ad not found", "");
+        }
+        model.addAttribute("ad", ad);
         return "/ads/show";
     }
 
