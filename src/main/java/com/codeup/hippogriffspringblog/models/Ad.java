@@ -23,6 +23,10 @@ public class Ad {
     @Column(nullable = false, length = 1024)
     private String description;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="user_id")
+    private User user;
+
     public Ad(String title, String description) {
         this.title = title;
         this.description = description;

@@ -1,5 +1,6 @@
 package com.codeup.hippogriffspringblog.models;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @NoArgsConstructor
@@ -7,9 +8,19 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+
+@Entity
+@Table(name="posts")
 public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, length = 60)
     private String title;
+
+    @Column(nullable = false, length = 500)
     private String body;
 
     public Post(String title, String body) {

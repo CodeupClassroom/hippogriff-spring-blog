@@ -1,5 +1,6 @@
 package com.codeup.hippogriffspringblog.controllers;
 
+import com.codeup.hippogriffspringblog.dao.PostRepository;
 import com.codeup.hippogriffspringblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +21,18 @@ public class PostController {
     private List<Post> posts = new ArrayList<>(List.of(post1, post2, post3));
 
 
+    private final PostRepository postDao;
+
+    // Plain English translation:
+    // Every time a PostController gets created
+    // A postDao should be part of it
+    public PostController(PostRepository postDao){
+        this.postDao = postDao;
+    }
+
     @GetMapping({"/", ""})
     public String getAllPosts(Model model) {
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postDao.findAll());
         return "/posts/index";
     }
 
@@ -41,8 +51,8 @@ public class PostController {
     @PostMapping("/create")
     public String submitPost(@RequestParam(name = "title") String title,
                              @RequestParam(name = "body") String body) {
-        Post post = new Post(99, title, body);
-        posts.add(post);
+        Post post = new Post(title, body);
+        postDao.save(post);
 
         return "redirect:/posts";
     }
