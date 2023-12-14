@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
   <th:block th:replace="~{partials/partials :: head (title='Submit an Ad')}"></th:block>
@@ -23,7 +23,14 @@
       <label class="form-label" for="description">Description:</label>
       <textarea class="form-control" name="description" id="description"></textarea>
     </div>
-
+    <div>
+      <div class="form-check" th:each="category : ${categories}">
+        <input class="form-check-input" type="checkbox" th:value="${category.name}" th:id="${category.name}" name="categories">
+        <label class="form-check-label" th:for="${category.name}">
+          [[${category.name}]]
+        </label>
+      </div>
+    </div>
     <button class="mt-4 btn ads-color-verdigris">Submit</button>
   </form>
 </div>
