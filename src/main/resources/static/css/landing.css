@@ -49,7 +49,7 @@ body {
     box-shadow: 1px 1px black inset;
     border-radius: 5px;
     color: black;
-    background-color: grey;
+    background-color: #E4DFDA;
 }
 
 .example-ad-card h5 {
@@ -58,8 +58,8 @@ body {
     white-space: nowrap;
 }
 
-.example-ad-card btn {
-    background-color: lightgray;
+.ad-example-button {
+    background-color: #48A9A6;
 }
 
 
