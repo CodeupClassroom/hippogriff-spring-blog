@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-
 <head>
     <th:block th:replace="~{partials/partials :: head (title='All Posts')}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/posts.css}">
 </head>
 
 <body>
@@ -10,15 +10,21 @@
 <nav th:replace="~{partials/partials :: navbar}">
 </nav>
 
-<h1>All Posts</h1>
+<header>
+    <h1>All Posts</h1>
+</header>
 
-<div th:if="${posts != null}">
+
+<main th:if="${posts != null}">
     <article th:each="post : ${posts}">
-        <h2><a th:href="@{|/posts/${post.id}|}">[[${post.title}]]</a></h2>
-        <p th:text="${post.body}"></p>
+        <div class="blogTitleWrapper">
+            <h2><a th:href="@{|/posts/${post.id}|}">[[${post.title}]]</a></h2>
+        </div>
+        <div class="blogTextWrapper">
+            <p th:text="${post.body}"></p>
+        </div>
     </article>
-
-</div>
+</main>
 
 <footer th:insert="~{partials/partials :: footer}" class="ads-page-footer ads-color-french-violet"></footer>
 
