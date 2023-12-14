@@ -1,0 +1,37 @@
+.landing-title {
+    margin-top: 100px;
+}
+
+.landing-subtitle {
+    margin-bottom: 100px;
+}
+
+#search-div {
+    padding: 10px;
+    border: 5px solid rgba(0, 0, 0, .3);
+    border-radius: 5px;
+    display: flex;
+    width: 75%;
+    margin: auto;
+}
+
+#landing-menu {
+    height: 50px;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    position: fixed;
+    z-index: 50;
+    top: 0px;
+}
+
+#search-form {
+    margin-bottom: 100px;
+}
+
+#example-ads-div {
+}
+
+.example-ad-card {
+
+}
