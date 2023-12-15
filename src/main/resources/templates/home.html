@@ -2,35 +2,160 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
-  <th:block th:replace="~{partials/partials :: head (title='Home')}"></th:block>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/landing.css">
 </head>
+
+<!--overall design of this landing page was swiped from https://www.imagine.art/-->
 
 <body>
 
-<nav th:replace="~{partials/partials :: navbar}">
-</nav>
+<div id="landing-menu">
+
+</div>
 
 <div class="container-fluid">
 
-  <h2 class="home-heading text-center">Welcome to AdBlaster!!1!</h2>
+  <canvas id="myCanvas" width="800" height="800"></canvas>
 
-  <h5 class="text-center">Because people LOVE a crapton of ads.</h5>
+  <h1 class="landing-title text-center">Welcome to AdBlaster!!1!</h1>
 
-  <img class="ads-banner-image" src="/images/happy_people.jpg">
+  <p class="landing-subtitle text-center">Because people LOVE a crapton of ads.</p>
 
-<!--  <div class="container ">-->
-<!--    <div class="row">-->
-<!--      <div class="text-center col-12 col-sm-6 ads-banner-text-left ">-->
-<!--        People LOVE ads!-->
-<!--      </div>-->
-<!--      <div class="text-center col-12 col-sm-6 ads-banner-text-right">-->
-<!--        So we have a TON of them. :)-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-</div>
+  <form id="search-form" action="/ads" method="post">
+    <div id="search-div">
+      <input class="form-control" type="text" name="search" id="search" placeholder="Search for some ads">
+      <button class="text-nowrap ms-2 btn btn-primary" type="submit"><i class="me-2 fas fa-search"></i>Search</button>
+    </div>
+  </form>
 
-<footer th:insert="~{partials/partials :: footer}" class="ads-page-footer ads-color-french-violet"></footer>
+  <div id="tech-div">
+    <h2>Ad-tacular Technology</h2>
+    <p>The right ad for you, everytime. Our artificial AI search algorithm is guaranteed<sup>1</sup> to provide you with the ads we think are perfect for you. Using state-of-the-art pseudo-random number generation technology, this app will rock your ever-loving socks off. Just look at these examples:</p>
+
+    <div id="example-ads-div" class="container-fluid">
+      <div class="row gy-4">
+
+        <div class="col-md-4 col-sm-6 col-12">
+          <div class="card example-ad-card simple-metal simple-metal-linear">
+            <img src="" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Dog for sale!</h5>
+              <p class="card-text">2 days ago</p>
+              <a href="#" class="btn example-ad-button">Check it out!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-12">
+          <div class="card example-ad-card simple-metal simple-metal-linear">
+            <img src="" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Cat for sale for dog for sale!!</h5>
+              <p class="card-text">1 day ago</p>
+              <a href="#" class="btn example-ad-button">Check it out!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-12">
+          <div class="card example-ad-card simple-metal simple-metal-linear">
+            <img src="" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">FREE: Gently used dentures</h5>
+              <p class="card-text">11 minutes ago</p>
+              <a href="#" class="btn example-ad-button">Check it out!</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="timing-div">
+    <h2>Perfect Timing</h2>
+    <p>There's nothing like the rush of emotion when you are in the middle of typing an important email and... up pops an ad showing you the latest in adult entertainment web sites. Wow! Well, our application's smartish ad delivery algorithm taps into the essence of that emotion and serves it up to you again and again. We know... you're welcome!</p>
+  </div>
+
+  <div id="stats-div">
+    <div class="row gy-0">
+      <div class="col-md-4 col-12">
+        <div class="ad-stat metal metal-linear">
+          <h2 class="stat-subheading"># ads</h2>
+          <h1 class="stat-heading">3</h1>
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="ad-stat metal metal-linear">
+          <h2 class="stat-subheading"># users</h2>
+          <h1 class="stat-heading">0</h1>
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="ad-stat metal metal-linear">
+          <h2 class="stat-subheading"># complaints</h2>
+          <h1 class="stat-heading">0</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<footer th:insert="~{partials/partials :: footer}" class="ads-page-footer ads-color-french-violet"></footer>-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!--swiped from https://slicker.me/javascript/starfield.htm-->
+<script>
+  let canvas = document.getElementById('myCanvas');
+  let context = canvas.getContext('2d');
+  let stars=[]; // the array of stars
+
+  function animate() {
+    context.canvas.width  = window.innerWidth;
+    // from https://javascript.info/size-and-scroll-window
+    context.canvas.height  = Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+            document.body.clientHeight, document.documentElement.clientHeight
+    );
+    let xOffset = window.innerWidth / 2;
+    let yOffset = window.innerHeight / 2;
+
+    if (stars.length < 300 && Math.random() < .5){ // if fewer than 300 stars, a 50% chance of creating a new one
+      // create a new star in the middle with random velocity
+      let star = {
+        x : 0,
+        y : 0,
+        vx : -5 + Math.random() * 10,
+        vy : -5 + Math.random() * 10
+      }
+      stars.push(star); // add the star to the array
+    }
+    context.clearRect(0, 0, canvas.width, canvas.height); // clear the frame
+
+    for (let i = 0; i < stars.length; i++) {
+      const star = stars[i];
+      star.x = star.x + star.vx; // add the velocity to the current position
+      star.y = star.y + star.vy; // in both axles
+      if(star.x > xOffset || star.x < (xOffset * -1)) { // if the star is out of bounds
+        star.x=0;  // put it back in the center
+        star.y=0;
+      }
+      // let color = Math.floor((Math.abs(star.x) + Math.abs(star.y)) / 5);
+      let color = 255;
+      context.fillStyle = 'rgb('+color+','+color+','+color+')'; // use the color value for the R, G and B component
+      context.beginPath();
+      context.arc(xOffset + star.x, yOffset + star.y, Math.abs(star.y / 300 + i / 300), 0, 2 * Math.PI); // draw a circle
+      context.fill();
+    }
+    window.requestAnimationFrame(animate); // request another animation frame
+  }
+
+  window.requestAnimationFrame(animate); // initialize the animation
+</script>
 
 </body>
 </html>
