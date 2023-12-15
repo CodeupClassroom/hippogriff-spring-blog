@@ -17,23 +17,28 @@
     width: 100%;
 }
 
+
 .ads-color-french-violet {
     background-color: #731DD8;
     color: #E4DFDA;
 }
 
+
 .ads-color-verdigris {
     background-color: #48A9A6;
 }
 
+/*use this instead of white*/
 .ads-color-timberwolf {
     background-color: #E4DFDA;
 }
 
+/*stars, headers */
 .ads-color-ecru {
     background-color: #D4B483;
 }
 
+/*dont use this*/
 .ads-color-indian-red {
     background-color: #C1666B;
 }
