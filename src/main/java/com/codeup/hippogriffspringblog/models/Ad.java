@@ -32,7 +32,7 @@ public class Ad {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
-            name = "ads_categories",
+            name = "adlister_ads_categories",
             joinColumns = @JoinColumn(name = "ad_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )

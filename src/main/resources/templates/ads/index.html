@@ -26,7 +26,8 @@
       <tr th:each="ad : ${ads}">
         <td><a th:href="@{|/ads/${ad.id}|}">[[${ad.title}]]</a></td>
         <td th:text="${ad.description}"></td>
-        <td th:text="${ad.user.username}"></td>
+        <td th:if="${ad.user != null}" th:text="${ad.user.username}"></td>
+        <td th:if="${ad.user == null}">No user found</td>
       </tr>
     </tbody>
   </table>

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="categories")
+@Table(name="adlister_categories")
 public class Category {
 
     @Id
