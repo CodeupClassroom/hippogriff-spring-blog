@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <th:block th:replace="~{partials/partials :: head (title='Post Detail')}"></th:block>
+</head>
+
+<body>
+
+<nav th:replace="~{partials/partials :: navbar}">
+</nav>
+
+<header th:insert="~{partials/partials :: header (heading='Post Detail')}"></header>
+
+<div class="container-fluid">
+
+    <h2 th:if="${post == null}">Post not found</h2>
+    <div th:if="${post != null}">
+        <form th:action="@{|/posts/${post.id}/edit|}" th:method="post" th:object="${post}">
+            <label class="form-label" for="title">Title:</label>
+            <input class="form-control" type="text" th:field="*{title}" th:value="${title}"><br>
+            <label class="form-label" for="body">Body:</label>
+            <textarea class="form-control" th:field="*{body}" cols="30" rows="10" th:text="${body}"></textarea>
+
+            <button id="submitButton" class="mt-2 btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+<footer th:insert="~{partials/partials :: footer}" class="ads-page-footer ads-color-french-violet"></footer>
+
+<th:block th:replace="~{partials/partials :: scripts}"></th:block>
+
+<script>
+    document.querySelector("#submitButton").addEventListener("click",
+        function(event) {
+            const title = document.querySelector("#title");
+            if(title.value.trim().length === 0) {
+                alert("Title cannot be blank!");
+                event.preventDefault();
+            }
+
+            const body = document.querySelector("#body");
+            if(body.value.trim().length === 0) {
+                alert("Body cannot be blank!");
+                event.preventDefault();
+            }
+        }
+    );
+</script>
+</body>
+</html>

@@ -2,6 +2,10 @@ body {
     background-color: black;
 }
 
+.landing-menu-link {
+    color: white;
+}
+
 .landing-title {
     color: white;
     margin-top: 100px;
