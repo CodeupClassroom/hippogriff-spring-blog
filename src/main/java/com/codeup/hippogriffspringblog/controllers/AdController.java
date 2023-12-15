@@ -5,6 +5,7 @@ import com.codeup.hippogriffspringblog.dao.CategoryDao;
 import com.codeup.hippogriffspringblog.dao.UserRepository;
 import com.codeup.hippogriffspringblog.models.Ad;
 import com.codeup.hippogriffspringblog.models.Category;
+import com.codeup.hippogriffspringblog.models.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,11 @@ public class AdController {
 //    }
 
     @GetMapping(value = {"", "/"})
-    public String adIndex(Model model){
+    public String adIndex(Model model) {
+        // test the custom dao function
+//        User testUser = userDao.findUserByHisHerNumber(1L);
+//        System.out.println(testUser.getUsername());
+
         List<Ad> ads = adDao.findAll();
         model.addAttribute("ads", ads);
         return "/ads/index";
@@ -50,21 +55,39 @@ public class AdController {
 
     @GetMapping({"/create", "/create/"})
     public String showCreate(Model model) {
+        model.addAttribute("ad", new Ad());
         model.addAttribute("categories", categoryDao.findAll());
         return "/ads/create";
     }
 
     @PostMapping({"/create", "/create/"})
-    public String doCreate(@RequestParam(name="title") String title,
-                           @RequestParam(name = "description") String description, @RequestParam(name= "categories") List<String> categories) {
-        Set<Category> adCategories = new HashSet<>();
-        for (String category : categories){
-            adCategories.add(categoryDao.findCategoryByName(category));
-        }
-        Ad ad = new Ad(title, description);
+    public String doCreate(@ModelAttribute Ad ad) {
         ad.setUser(userDao.findUserById(1L));
-        ad.setCategories(adCategories);
         adDao.save(ad);
+        return "redirect:/ads";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String showEditForm(@PathVariable long id,
+                               Model model) {
+        Ad ad;
+        if (adDao.findById(id).isPresent()) {
+            ad = adDao.findById(id).get();
+        } else {
+            ad = null;
+        }
+        model.addAttribute("ad", ad);
+        return "/ads/edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editAd(@ModelAttribute Ad modifiedAd){
+        // TODO: refactor this to check isPresent()
+        // because that's the responsible thing to do
+        Ad oldAd = adDao.findById(modifiedAd.getId()).get();
+
+        modifiedAd.setUser(oldAd.getUser());
+        adDao.save(modifiedAd);
         return "redirect:/ads";
     }
 }

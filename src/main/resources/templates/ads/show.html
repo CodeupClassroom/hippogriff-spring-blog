@@ -24,6 +24,9 @@
     <ul id="categories">
         <li th:each="category : ${ad.categories}">[[${category.name}]]</li>
     </ul>
+
+    <a th:href="@{|/ads/${ad.id}/edit|}">Edit this ad</a>
+
 </div>
 
 <footer th:insert="~{partials/partials :: footer}" class="ads-page-footer ads-color-french-violet"></footer>
